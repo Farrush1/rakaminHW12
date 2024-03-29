@@ -1,9 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import './App.css';
 import * as React from 'react';
+import { useState } from 'react';
 
 function Board() {
   const [squares, setSquares] = React.useState(Array(9).fill(null));
@@ -27,7 +24,7 @@ function Board() {
   function renderSquare(i) {
     return (
       <button className="square" onClick={() => selectSquare(i)}>
-        {squares[i]}
+        {squares[i] || '    '}
       </button>
     );
   }
@@ -107,4 +104,3 @@ function App() {
 }
 
 export default App;
-
