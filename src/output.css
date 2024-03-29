@@ -76,21 +76,17 @@ button:focus-visible {
   }
 }
 
-.board-container {
+/* .board-container {
   display: flex;
-}
+
+} */
 
 .game-board {
   margin-right: 20px;
 }
 
 .game-info {
-  padding: 20px;
-  padding-bottom: 100px;
-}
-
-.game-info ol {
-  padding: 20px;
+  padding: 500px
 }
 
 .restart-button {

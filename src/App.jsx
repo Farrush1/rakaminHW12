@@ -2,7 +2,9 @@ import './App.css';
 import * as React from 'react';
 
 function Board() {
-  const [history, setHistory] = React.useState([{ squares: Array(9).fill(null) }]);
+  const [history, setHistory] = React.useState([
+    { squares: Array(9).fill(null) },
+  ]);
   const [stepNumber, setStepNumber] = React.useState(0);
   const [xIsNext, setXIsNext] = React.useState(true);
 
@@ -40,20 +42,24 @@ function Board() {
 
   const current = history[stepNumber];
   const winner = calculateWinner(current.squares);
-  const status = calculateStatus(winner, current.squares, calculateNextValue(current.squares));
+  const status = calculateStatus(
+    winner,
+    current.squares,
+    calculateNextValue(current.squares)
+  );
 
   const moves = history.map((step, move) => {
     const desc = move ? `Go to move #${move}` : 'Go to game start';
     return (
-      <li key={move} >
+      <li key={move}>
         <button onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     );
   });
 
   return (
-    <div className="board-container">
-      <div className="game-board">
+    <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center">
         <div>
           {renderSquare(0)}
           {renderSquare(1)}
@@ -69,8 +75,9 @@ function Board() {
           {renderSquare(7)}
           {renderSquare(8)}
         </div>
-        <button className='restart-button' onClick={restart}>
-        <h2>Restart </h2></button>
+        <button className="restart-button" onClick={restart}>
+          <h2>Restart </h2>
+        </button>
       </div>
       <div className="game-info">
         <div>{status}</div>
@@ -93,11 +100,13 @@ function Game() {
 }
 
 function calculateStatus(winner, squares, nextValue) {
-  return winner
-    ? `Winner: ${winner}`
-    : squares.every(Boolean)
-    ? `Scratch: Cat's game`
-    : <h2> NEXT PLAYER {nextValue}</h2>;
+  return winner ? (
+    `Winner: ${winner}`
+  ) : squares.every(Boolean) ? (
+    `Scratch: Cat's game`
+  ) : (
+    <h2> NEXT PLAYER {nextValue}</h2>
+  );
 }
 
 function calculateNextValue(squares) {
@@ -129,4 +138,3 @@ function App() {
 }
 
 export default App;
-
